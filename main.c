@@ -6,6 +6,7 @@
 
 void PrintGrid(char** Grid);
 void InputData(char** Grid);
+void EmptyGrid(char** Grid);
 
 int main(){
 
@@ -21,10 +22,11 @@ int main(){
     for(int i = 0; i < GRID_SIZE; i++){
         grid[i] = (char*)malloc(GRID_SIZE * sizeof(char));
     }
+    EmptyGrid(grid);
 
     InputData(grid);
 
-    printf("%c", grid[0][0]);
+    PrintGrid(grid);
 
     /*
      *******************************************
@@ -100,4 +102,14 @@ void InputData(char** Grid){
         }
     }
     
+}
+
+void EmptyGrid(char** Grid){
+    for(int i = 0; i < GRID_SIZE; i++){
+        for (int j = 0; j < GRID_SIZE; j++)
+        {
+            Grid[i][j] = '-';
+        }
+        
+    }
 }
