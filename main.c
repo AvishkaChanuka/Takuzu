@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <math.h>
 
 #define GRID_SIZE 4
 
@@ -10,6 +11,7 @@ void EmptyGrid(char** Grid);
 bool IsGridFull(char** Grid);
 bool IsEqualCountRow(char** Grid);
 bool IsEqualCountCol(char** Grid);
+bool IsTwoRowsIdentical(char** Grid);
 
 int main(){
 
@@ -49,6 +51,14 @@ int main(){
         if(IsEqualCountCol(grid) == false){
             printf("Equal Number of 0s and 1s shuld be in each Column\n");
         }
+
+        //Check Game Rule: No two rows can be identical
+        
+        if(IsTwoRowsIdentical(grid) == false){
+            printf("No two rows can be identical\n");
+        }
+
+        //Check Game Rule: No two columns can be identical
         
     }
 
@@ -219,4 +229,29 @@ bool IsEqualCountCol(char** Grid){
         }
     }
     return true;
+}
+
+bool IsTwoRowsIdentical(char** Grid){
+
+    int decimalNum[GRID_SIZE] = {0,0,0,0};
+
+    for(int i = 0; i < GRID_SIZE; i++){
+        for(int j = 0; j < GRID_SIZE; j++){
+            if(Grid[i][j] == '1'){
+                decimalNum[i] += pow(2,(GRID_SIZE - (j+1)));
+            }
+        }
+    }
+
+    for (int i = 0; i < GRID_SIZE-1; i++)
+    {
+        for(int j = i+1; j<GRID_SIZE; j++){
+            if(decimalNum[i] == decimalNum[j] && decimalNum[i] != 0 && decimalNum[j] != 0){
+                return false;
+            }
+        }
+    }
+
+    return true;
+    
 }
