@@ -7,6 +7,7 @@
 void PrintGrid(char** Grid);
 void InputData(char** Grid);
 void EmptyGrid(char** Grid);
+bool IsGridFull(char** Grid);
 
 int main(){
 
@@ -24,9 +25,24 @@ int main(){
     }
     EmptyGrid(grid);
 
-    InputData(grid);
+    /*
+     *******************************************
+     * Game Loop
+     *******************************************
+    */
+    while(!IsGridFull(grid)){
 
-    PrintGrid(grid);
+        //Handle User Input
+        InputData(grid);
+
+        //Print the grid in each game loop
+        PrintGrid(grid);
+
+        //Check Game Rule: Equal Number of 0s and 1s each row
+        
+        //Check Game Rule: Equal Number of 0s and 1s each column
+        
+    }
 
     /*
      *******************************************
@@ -112,4 +128,23 @@ void EmptyGrid(char** Grid){
         }
         
     }
+}
+
+bool IsGridFull(char** Grid){
+
+    bool isFull = false;
+
+    for(int i = 0; i < GRID_SIZE; i++){
+        for (int j = 0; j < GRID_SIZE; j++)
+        {
+            if(Grid[i][j] == '-'){
+                isFull = false;
+            }
+            else{
+                isFull = true;
+            }
+        }
+    }
+
+    return isFull;
 }
