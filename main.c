@@ -1,9 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 #define GRID_SIZE 4
 
 void PrintGrid(char** Grid);
+void InputData(char** Grid);
 
 int main(){
 
@@ -19,6 +21,10 @@ int main(){
     for(int i = 0; i < GRID_SIZE; i++){
         grid[i] = (char*)malloc(GRID_SIZE * sizeof(char));
     }
+
+    InputData(grid);
+
+    printf("%c", grid[0][0]);
 
     /*
      *******************************************
@@ -45,4 +51,53 @@ void PrintGrid(char** Grid){
         
         printf("\n\n");
     }
+}
+
+void InputData(char** Grid){
+
+    int x,y;
+    bool isValid[3] = {false,false,false};
+
+    while(!isValid[0] || !isValid[1] || !isValid[2]){
+        
+        if(!isValid[0]){
+            printf("Enter Row no (1 - %i): ", GRID_SIZE);
+            scanf("%i",&x);
+
+            if(x > 0 && x <= GRID_SIZE){
+                isValid[0] = true;
+            }
+            else{
+                printf("Invalid Row number! \n");
+                continue;
+            }
+        }
+
+        if(!isValid[1]){
+            printf("Enter Col no (1 - %i): ", GRID_SIZE);
+            scanf("%i",&y);
+
+            if(y > 0 && y <= GRID_SIZE){
+                isValid[1] = true;
+            }
+            else{
+                printf("Invalid Column number! \n");
+                continue;
+            }
+        }
+
+        if(!isValid[2]){
+            printf("Enter Value (0 or 1): ");
+            scanf(" %c",&Grid[x-1][y-1]);
+
+            if(Grid[x-1][y-1] == '0' || Grid[x-1][y-1] == '1'){
+                isValid[2] = true;
+            }
+            else{
+                printf("Invalid value! \n");
+                continue;
+            }
+        }
+    }
+    
 }
