@@ -8,6 +8,7 @@ void PrintGrid(char** Grid);
 void InputData(char** Grid);
 void EmptyGrid(char** Grid);
 bool IsGridFull(char** Grid);
+bool IsEqualCountRow(char** Grid);
 
 int main(){
 
@@ -39,7 +40,10 @@ int main(){
         PrintGrid(grid);
 
         //Check Game Rule: Equal Number of 0s and 1s each row
-        
+        if(IsEqualCountRow(grid) == false){
+            printf("Equal Number of 0s and 1s shuld be in each row\n");
+        }
+
         //Check Game Rule: Equal Number of 0s and 1s each column
         
     }
@@ -147,4 +151,36 @@ bool IsGridFull(char** Grid){
     }
 
     return isFull;
+}
+
+bool IsEqualCountRow(char** Grid){
+
+    int count_0 = 0, count_1 = 0;
+    int checkCount = GRID_SIZE/2; 
+
+    for(int i = 0; i < GRID_SIZE; i++){
+
+        count_0 = 0; count_1 = 0;
+
+        for(int j = 0; j < GRID_SIZE; j++){
+
+            if(Grid[i][j] == '0'){
+
+                count_0++;
+
+            }
+            else if(Grid[i][j] == '1'){
+
+                count_1++;
+
+            }
+
+        }
+
+        if(count_0 > checkCount || count_1 > checkCount){
+        
+            return false;
+        }
+    }
+    return true;
 }
