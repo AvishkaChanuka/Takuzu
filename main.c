@@ -32,7 +32,7 @@ int main(){
     }
     EmptyGrid(grid);
 
-    bool rule1, rule2, rule3, rule4, isGameOver = false;
+    bool rule1 = false, rule2 = false, rule3 = false, rule4 = false, isGameOver = false;
 
     /*
      *******************************************
@@ -79,11 +79,12 @@ int main(){
                 PrintMessage("Hurray! You win the Game!!!");
             }
             else{
-                PrintMessage("Sorry! GameO ver!!!");
+                PrintMessage("Sorry! Game Over!!!");
             }
             isGameOver = true;
         }
     }
+
 
     /*
      *******************************************
@@ -173,21 +174,24 @@ void EmptyGrid(char** Grid){
 
 bool IsGridFull(char** Grid){
 
-    bool isFull = false;
+    int count = 0;
 
     for(int i = 0; i < GRID_SIZE; i++){
         for (int j = 0; j < GRID_SIZE; j++)
         {
-            if(Grid[i][j] == '-'){
-                isFull = false;
-            }
-            else{
-                isFull = true;
+            if(Grid[i][j] != '-'){
+                count++;
             }
         }
     }
 
-    return isFull;
+    if(count == (GRID_SIZE * GRID_SIZE)){
+        return true;
+    }
+    else{
+        return false;
+    }
+
 }
 
 bool IsEqualCountRow(char** Grid){
