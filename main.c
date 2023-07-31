@@ -32,13 +32,16 @@ int main(){
     }
     EmptyGrid(grid);
 
+    bool rule1, rule2, rule3, rule4, isGameOver = false;
+
     /*
      *******************************************
      * Game Loop
      *******************************************
     */
-    while(!IsGridFull(grid)){
+    while(!isGameOver){
 
+        //IsGridFull(grid)
         //Handle User Input
         InputData(grid);
 
@@ -47,27 +50,39 @@ int main(){
         PrintGrid(grid);
 
         //Check Game Rule: Equal Number of 0s and 1s each row
-        if(IsEqualCountRow(grid) == false){
+        rule1 = IsEqualCountRow(grid);
+        if(rule1 == false){
             PrintMessage("Equal Number of 0s and 1s shuld be in each row");
         }
 
         //Check Game Rule: Equal Number of 0s and 1s each column
-        if(IsEqualCountCol(grid) == false){
+        rule2 = IsEqualCountCol(grid);
+        if(rule2 == false){
             PrintMessage("Equal Number of 0s and 1s shuld be in each Column");
         }
 
         //Check Game Rule: No two rows can be identical
-        
-        if(IsTwoRowsIdentical(grid) == false){
+        rule3 = IsTwoRowsIdentical(grid);
+        if(rule3 == false){
             PrintMessage("No two rows can be identical");
         }
 
         //Check Game Rule: No two columns can be identical
-
-        if(IsTwoColsIdentical(grid) == false){
+        rule4 = IsTwoColsIdentical(grid);
+        if(rule4 == false){
             PrintMessage("No two Columns can be identical");
         }
         
+        if(IsGridFull(grid)){
+            
+            if(rule1 && rule2 && rule3 && rule4){
+                PrintMessage("Hurray! You win the Game!!!");
+            }
+            else{
+                PrintMessage("Sorry! GameO ver!!!");
+            }
+            isGameOver = true;
+        }
     }
 
     /*
