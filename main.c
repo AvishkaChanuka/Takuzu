@@ -242,11 +242,16 @@ bool IsEqualCountCol(char** Grid){
 bool IsTwoRowsIdentical(char** Grid){
 
     int decimalNum[GRID_SIZE] = {0,0,0,0};
+    int decimalCount[GRID_SIZE] = {0,0,0,0};
 
     for(int i = 0; i < GRID_SIZE; i++){
         for(int j = 0; j < GRID_SIZE; j++){
             if(Grid[i][j] == '1'){
                 decimalNum[i] += pow(2,(GRID_SIZE - (j+1)));
+            }
+
+            if(Grid[i][j] != '-'){
+                decimalCount[i]++;
             }
         }
     }
@@ -254,7 +259,7 @@ bool IsTwoRowsIdentical(char** Grid){
     for (int i = 0; i < GRID_SIZE-1; i++)
     {
         for(int j = i+1; j<GRID_SIZE; j++){
-            if(decimalNum[i] == decimalNum[j] && decimalNum[i] != 0 && decimalNum[j] != 0){
+            if(decimalNum[i] == decimalNum[j] && decimalNum[i] != 0 && decimalNum[j] != 0 && decimalCount[i] == 4 && decimalCount[j] == 4){
                 return false;
             }
         }
@@ -267,11 +272,16 @@ bool IsTwoRowsIdentical(char** Grid){
 bool IsTwoColsIdentical(char** Grid){
 
     int decimalNum[GRID_SIZE] = {0,0,0,0};
+    int decimalCount[GRID_SIZE] = {0,0,0,0};
 
     for(int i = 0; i < GRID_SIZE; i++){
         for(int j = 0; j < GRID_SIZE; j++){
             if(Grid[j][i] == '1'){
                 decimalNum[i] += pow(2,(GRID_SIZE - (j+1)));
+            }
+
+            if(Grid[j][i] != '-'){
+                decimalCount[i]++;
             }
         }
     }
@@ -279,7 +289,7 @@ bool IsTwoColsIdentical(char** Grid){
     for (int i = 0; i < GRID_SIZE-1; i++)
     {
         for(int j = i+1; j<GRID_SIZE; j++){
-            if(decimalNum[i] == decimalNum[j] && decimalNum[i] != 0 && decimalNum[j] != 0){
+            if(decimalNum[i] == decimalNum[j] && decimalNum[i] != 0 && decimalNum[j] != 0 && decimalCount[i] == 4 && decimalCount[j] == 4){
                 return false;
             }
         }
