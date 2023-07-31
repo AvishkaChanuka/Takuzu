@@ -145,7 +145,7 @@ void GameDifficulty(){
 
     while (!isValid)
     {
-        printf("Select Diffculty level (1 or 2 or 3): ");
+        printf("Select Grid Size (1 or 2 or 3): ");
         scanf("%i",&index);
 
         if(index > 0 && index < 4){
@@ -175,8 +175,8 @@ void GameRules(){
     printf("-----------\n\n");
     printf("Rule 0 - Each cell must be fill with either 0 or 1\n");
 
-    printf("Rule 1 - Equal Number of 0s and 1s shuld be in each row\n");
-    printf("Rule 2 - Equal Number of 0s and 1s shuld be in each column\n");
+    printf("Rule 1 - Equal Number of 0s and 1s shuld be in each rows\n");
+    printf("Rule 2 - Equal Number of 0s and 1s shuld be in each columns\n");
 
     printf("Rule 3 - No two rows can be identical\n");
     printf("Rule 4 - No two Columns can be identical\n");
