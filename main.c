@@ -6,15 +6,37 @@
 
 int GRID_SIZE  = 4;
 
+//Select Game difficulty
 void GameDifficulty();
+
+//Print Game Rules
+void GameRules();
+
+//Print the current Grid
 void PrintGrid(char** Grid);
+
+//Assign a value to a cell
 void InputData(char** Grid);
+
+//Assign '-' to each cell for clear grid
 void EmptyGrid(char** Grid);
+
+//Check every cells have been filled with either 1 or 0
 bool IsGridFull(char** Grid);
+
+//Check Game rule 1
 bool IsEqualCountRow(char** Grid);
+
+//Check Game rule 2
 bool IsEqualCountCol(char** Grid);
+
+//Check Game rule 3
 bool IsTwoRowsIdentical(char** Grid);
+
+//Check Game rule 4
 bool IsTwoColsIdentical(char** Grid);
+
+//Print message in Ascill comment style
 void PrintMessage(char msg[]);
 
 int main(){
@@ -24,6 +46,12 @@ int main(){
      * Initialization
      *******************************************
     */
+
+    PrintMessage("Welcome to Takuzu *");
+
+    //Game difficulty
+    GameDifficulty();
+
 
     //Dynamically allocate memory for the Grid
     char** grid = (char**)malloc(GRID_SIZE * sizeof(char*));
@@ -35,10 +63,9 @@ int main(){
 
     bool rule1 = false, rule2 = false, rule3 = false, rule4 = false, isGameOver = false;
 
-    PrintMessage("Welcome to Takuzu *");
+    GameRules();
 
-    //Game difficulty
-    GameDifficulty();
+    PrintGrid(grid);
 
     /*
      *******************************************
@@ -140,6 +167,21 @@ void PrintGrid(char** Grid){
         
         printf("\n\n");
     }
+}
+
+void GameRules(){
+    printf("\n");
+    printf("Game Rules\n");
+    printf("-----------\n\n");
+    printf("Rule 0 - Each cell must be fill with either 0 or 1\n");
+
+    printf("Rule 1 - Equal Number of 0s and 1s shuld be in each row\n");
+    printf("Rule 2 - Equal Number of 0s and 1s shuld be in each column\n");
+
+    printf("Rule 3 - No two rows can be identical\n");
+    printf("Rule 4 - No two Columns can be identical\n");
+
+    printf("\nLet's Begin...\n\n");
 }
 
 void InputData(char** Grid){
