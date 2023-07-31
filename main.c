@@ -4,8 +4,9 @@
 #include <math.h>
 #include <string.h>
 
-#define GRID_SIZE 4
+int GRID_SIZE  = 4;
 
+void GameDifficulty();
 void PrintGrid(char** Grid);
 void InputData(char** Grid);
 void EmptyGrid(char** Grid);
@@ -33,6 +34,11 @@ int main(){
     EmptyGrid(grid);
 
     bool rule1 = false, rule2 = false, rule3 = false, rule4 = false, isGameOver = false;
+
+    PrintMessage("Welcome to Takuzu *");
+
+    //Game difficulty
+    GameDifficulty();
 
     /*
      *******************************************
@@ -99,6 +105,29 @@ int main(){
     free(grid);
     
     return 0;
+}
+
+void GameDifficulty(){
+    bool isValid = false;
+    int index, difficulty[] = {4,6,8};
+
+    printf("\n");
+    printf("1 - 4x4 Grid (Beginner)\n");
+    printf("2 - 8x8 Grid (Intermediate)\n");
+    printf("3 - 6x6 Grid (Pro)\n\n");
+
+    while (!isValid)
+    {
+        printf("Select Diffculty level (1 or 2 or 3): ");
+        scanf("%i",&index);
+
+        if(index > 0 && index < 4){
+            GRID_SIZE = difficulty[index-1];
+            isValid = true;
+        }
+    }
+    
+
 }
 
 void PrintGrid(char** Grid){
@@ -260,8 +289,13 @@ bool IsEqualCountCol(char** Grid){
 
 bool IsTwoRowsIdentical(char** Grid){
 
-    int decimalNum[GRID_SIZE] = {0,0,0,0};
-    int decimalCount[GRID_SIZE] = {0,0,0,0};
+    int decimalNum[GRID_SIZE];
+    int decimalCount[GRID_SIZE];
+
+    for(int i = 0; i< GRID_SIZE; i++){
+        decimalNum[i] = 0;
+        decimalCount[i] = 0;
+    }
 
     for(int i = 0; i < GRID_SIZE; i++){
         for(int j = 0; j < GRID_SIZE; j++){
@@ -290,8 +324,13 @@ bool IsTwoRowsIdentical(char** Grid){
 
 bool IsTwoColsIdentical(char** Grid){
 
-    int decimalNum[GRID_SIZE] = {0,0,0,0};
-    int decimalCount[GRID_SIZE] = {0,0,0,0};
+    int decimalNum[GRID_SIZE];
+    int decimalCount[GRID_SIZE];
+
+    for(int i = 0; i< GRID_SIZE; i++){
+        decimalNum[i] = 0;
+        decimalCount[i] = 0;
+    }
 
     for(int i = 0; i < GRID_SIZE; i++){
         for(int j = 0; j < GRID_SIZE; j++){
