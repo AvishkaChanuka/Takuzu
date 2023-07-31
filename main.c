@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <math.h>
+#include <string.h>
 
 #define GRID_SIZE 4
 
@@ -13,6 +14,7 @@ bool IsEqualCountRow(char** Grid);
 bool IsEqualCountCol(char** Grid);
 bool IsTwoRowsIdentical(char** Grid);
 bool IsTwoColsIdentical(char** Grid);
+void PrintMessage(char msg[]);
 
 int main(){
 
@@ -41,28 +43,29 @@ int main(){
         InputData(grid);
 
         //Print the grid in each game loop
+        printf("\n");
         PrintGrid(grid);
 
         //Check Game Rule: Equal Number of 0s and 1s each row
         if(IsEqualCountRow(grid) == false){
-            printf("Equal Number of 0s and 1s shuld be in each row\n");
+            PrintMessage("Equal Number of 0s and 1s shuld be in each row");
         }
 
         //Check Game Rule: Equal Number of 0s and 1s each column
         if(IsEqualCountCol(grid) == false){
-            printf("Equal Number of 0s and 1s shuld be in each Column\n");
+            PrintMessage("Equal Number of 0s and 1s shuld be in each Column");
         }
 
         //Check Game Rule: No two rows can be identical
         
         if(IsTwoRowsIdentical(grid) == false){
-            printf("No two rows can be identical\n");
+            PrintMessage("No two rows can be identical");
         }
 
         //Check Game Rule: No two columns can be identical
 
         if(IsTwoColsIdentical(grid) == false){
-            printf("No two Columns can be identical\n");
+            PrintMessage("No two Columns can be identical");
         }
         
     }
@@ -284,4 +287,19 @@ bool IsTwoColsIdentical(char** Grid){
 
     return true;
     
+}
+
+void PrintMessage(char msg[]){
+    int length = strlen(msg) + 1;
+
+    for(int i = 0; i<=length; i++){
+        printf("*");
+    }
+
+    printf("\n* %s \n",msg);
+
+    for(int i = 0; i<=length; i++){
+        printf("*");
+    }
+    printf("\n");
 }
