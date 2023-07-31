@@ -12,6 +12,7 @@ bool IsGridFull(char** Grid);
 bool IsEqualCountRow(char** Grid);
 bool IsEqualCountCol(char** Grid);
 bool IsTwoRowsIdentical(char** Grid);
+bool IsTwoColsIdentical(char** Grid);
 
 int main(){
 
@@ -59,6 +60,10 @@ int main(){
         }
 
         //Check Game Rule: No two columns can be identical
+
+        if(IsTwoColsIdentical(grid) == false){
+            printf("No two Columns can be identical\n");
+        }
         
     }
 
@@ -238,6 +243,31 @@ bool IsTwoRowsIdentical(char** Grid){
     for(int i = 0; i < GRID_SIZE; i++){
         for(int j = 0; j < GRID_SIZE; j++){
             if(Grid[i][j] == '1'){
+                decimalNum[i] += pow(2,(GRID_SIZE - (j+1)));
+            }
+        }
+    }
+
+    for (int i = 0; i < GRID_SIZE-1; i++)
+    {
+        for(int j = i+1; j<GRID_SIZE; j++){
+            if(decimalNum[i] == decimalNum[j] && decimalNum[i] != 0 && decimalNum[j] != 0){
+                return false;
+            }
+        }
+    }
+
+    return true;
+    
+}
+
+bool IsTwoColsIdentical(char** Grid){
+
+    int decimalNum[GRID_SIZE] = {0,0,0,0};
+
+    for(int i = 0; i < GRID_SIZE; i++){
+        for(int j = 0; j < GRID_SIZE; j++){
+            if(Grid[j][i] == '1'){
                 decimalNum[i] += pow(2,(GRID_SIZE - (j+1)));
             }
         }
