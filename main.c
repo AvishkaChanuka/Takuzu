@@ -36,7 +36,7 @@ bool IsTwoRowsIdentical(char** Grid);
 //Check Game rule 4
 bool IsTwoColsIdentical(char** Grid);
 
-//Print message in Ascill comment style
+//Print message in ASCII comment style
 void PrintMessage(char msg[]);
 
 int main(){
@@ -85,13 +85,13 @@ int main(){
         //Check Game Rule: Equal Number of 0s and 1s each row
         rule1 = IsEqualCountRow(grid);
         if(rule1 == false){
-            PrintMessage("Equal Number of 0s and 1s shuld be in each row");
+            PrintMessage("Equal Number of 0s and 1s shuold be in each row");
         }
 
         //Check Game Rule: Equal Number of 0s and 1s each column
         rule2 = IsEqualCountCol(grid);
         if(rule2 == false){
-            PrintMessage("Equal Number of 0s and 1s shuld be in each Column");
+            PrintMessage("Equal Number of 0s and 1s shuold be in each Column");
         }
 
         //Check Game Rule: No two rows can be identical
@@ -148,6 +148,7 @@ void GameDifficulty(){
         printf("Select Grid Size (1 or 2 or 3): ");
         scanf("%i",&index);
 
+        //Check user input is valid or not and chane the value of GRID_SIZE
         if(index > 0 && index < 4){
             GRID_SIZE = difficulty[index-1];
             isValid = true;
@@ -173,10 +174,10 @@ void GameRules(){
     printf("\n");
     printf("Game Rules\n");
     printf("-----------\n\n");
-    printf("Rule 0 - Each cell must be fill with either 0 or 1\n");
+    printf("Rule 0 - Each cell must be filled with either 0 or 1\n");
 
-    printf("Rule 1 - Equal Number of 0s and 1s shuld be in each rows\n");
-    printf("Rule 2 - Equal Number of 0s and 1s shuld be in each columns\n");
+    printf("Rule 1 - Equal Number of 0s and 1s should be in each row\n");
+    printf("Rule 2 - Equal Number of 0s and 1s should be in each column\n");
 
     printf("Rule 3 - No two rows can be identical\n");
     printf("Rule 4 - No two Columns can be identical\n");
@@ -354,7 +355,7 @@ bool IsTwoRowsIdentical(char** Grid){
     for (int i = 0; i < GRID_SIZE-1; i++)
     {
         for(int j = i+1; j<GRID_SIZE; j++){
-            if(decimalNum[i] == decimalNum[j] && decimalNum[i] != 0 && decimalNum[j] != 0 && decimalCount[i] == 4 && decimalCount[j] == 4){
+            if(decimalNum[i] == decimalNum[j] && decimalNum[i] != 0 && decimalNum[j] != 0 && decimalCount[i] == GRID_SIZE && decimalCount[j] == GRID_SIZE){
                 return false;
             }
         }
@@ -389,7 +390,7 @@ bool IsTwoColsIdentical(char** Grid){
     for (int i = 0; i < GRID_SIZE-1; i++)
     {
         for(int j = i+1; j<GRID_SIZE; j++){
-            if(decimalNum[i] == decimalNum[j] && decimalNum[i] != 0 && decimalNum[j] != 0 && decimalCount[i] == 4 && decimalCount[j] == 4){
+            if(decimalNum[i] == decimalNum[j] && decimalNum[i] != 0 && decimalNum[j] != 0 && decimalCount[i] == GRID_SIZE && decimalCount[j] == GRID_SIZE){
                 return false;
             }
         }
